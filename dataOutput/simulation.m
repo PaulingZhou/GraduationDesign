@@ -1,0 +1,17 @@
+dataTemp = importdata('dataOutputTemp.txt');
+dataHumi = importdata('dataOutputHumi.txt');
+dataSoundTime = importdata('dataOutputSoundTime.txt');
+dataCount = 1:1:447;
+figure(1);
+subplot(1,3,1);
+plot(dataCount,dataTemp,'.');
+subplot(1,3,2);
+plot(dataCount,dataHumi,'.');
+subplot(1,3,3);
+plot(dataCount,dataSoundTime,'.');
+ylim([280,290]);
+% figure(2);
+% n = 2;
+% A = polyfit(dataSoundTime,dataTemp,n);
+% y=polyval(A,dataSoundTime);
+% plot(dataSoundTime,dataTemp,'k*',dataSoundTime,y,'r-');
