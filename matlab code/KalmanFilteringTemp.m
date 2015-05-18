@@ -1,10 +1,10 @@
-function[s,N] = KalmanFiltering(dataTempMeasurement);
+function[s,N] = KalmanFilteringTemp(dataTempMeasurement)
 N = length(dataTempMeasurement);                                                                                                           %测量数据为447组
 % dataTempMeasurement = importdata('dataOutputTemp.txt');                     %将测量数据从'dataOutputTemp.txt'中取出
 % dataCount = 1:1:N;                                                                                      %横坐标，绘图用
 % plot(dataCount,dataTempMeasurement,'-');                                              %绘出未经过处理的图像
-w(1) = 0;                                                                                                           %产生一个1*N的行向量，第一个数为0，
 w = 0.025*randn(1,N);                                                                                       %w为过程噪声（其和后边的v在卡尔曼理论里均为高斯白噪声）
+w(1) = 0;                                                                                                           %产生一个1*N的行向量，第一个数为0，
 dataTempReal(1) = dataTempMeasurement(1);                                           %实际温度值，赋初值为测量的第一个值
 a = 1;                                                                                                                 %a为状态转移阵，由于认为温度在这一时刻与下一时刻没有变化，则a=1
 for k = 2:N                                                                                                         %系统状态方程,k时刻的状态等于k-1时刻状态乘以状态转移阵加噪声
@@ -27,13 +27,13 @@ for t = 2:N
     s(t) = a*s(t-1) + b(t)*(Y(t) - a*c*s(t-1));                                                              %由上一时刻状态的最优化估计s(t-1)得到当前时刻的最优化估计
     p(t) = p1(t) - c*b(t)*p1(t);                                                                                   %此时由一步估计得协方差得到此时刻最优化估计得协方差
 end
-t = 1:N;
-figure(1);
-plot(t,dataTempMeasurement,'b',t,s,'r');
-legend('温度测量值','经过滤波后的温度估计值');
-xlabel('测量次序（/次）');
-ylabel('温度（/℃）');
-grid on;
+% t = 1:N;
+% figure(1);
+% plot(t,dataTempMeasurement,'b',t,s,'r');
+% legend('温度测量值','经过滤波后的温度估计值');
+% xlabel('测量次序（/次）');
+% ylabel('温度（/℃）');
+% grid on;
 % figure(2);
 % plot(t,V);
 % figure(3);
