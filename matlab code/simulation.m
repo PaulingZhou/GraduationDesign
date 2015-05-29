@@ -46,6 +46,7 @@ grid on;
 figure(3);
 dataUltraSonicSpeed = 100000./dataUltraSonicFiltering;;
 A1 = polyfit(dataTempFiltering,dataUltraSonicSpeed,2);
+A2 = polyfit(dataUltraSonicSpeed,dataTempFiltering,1);
 y1 = polyval(A1,dataTempFiltering);
 y2 = 20.04*sqrt(dataTempFiltering+273.15);
 plot(dataTempFiltering,dataUltraSonicSpeed,'k.',dataTempFiltering,y1,'r-',dataTempFiltering,y2);
